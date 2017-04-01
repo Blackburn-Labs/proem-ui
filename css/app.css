@@ -1,0 +1,42 @@
+@import url('roboto.css');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serf;
+  font-weight: 300;
+}
+
+#app {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-width: 800px;
+  height: 100%;
+  background-color: #212121;
+  color: #fff;
+}
+
+.page {
+  margin: 1em;
+  display: block;
+  padding: 2em;
+}
+
+.error-page {
+  margin: 1em;
+  display: block;
+  padding: 2em;
+  color: rgb(244, 67, 54) !important;
+  font-weight: 100 !important;
+  background-color: #403535 !important;
+  text-align: center;
+}
+
+a,
+a:hover,
+a:visited {
+  color: #3e50b4;
+}

@@ -1,0 +1,165 @@
+{
+  "name": "PROEM",
+  "version": "0.0.1",
+  "description": "Proem UI Boilerplate",
+  "main": "main.js",
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint . --ext .js --ext .jsx  --ignore-path .gitignore --cache",
+    "stylelint": "./node_modules/.bin/stylelint ./css/*.css ./pages/**/*.css ./components/**/*.css --ignore-path .gitignore",
+    "lint": "npm run eslint && npm run stylelint",
+    "bundle:prod": "./node_modules/.bin/webpack --progress --colors --define process.env.NODE_ENV='\"production\"' --optimize-minimize --optimize-dedupe",
+    "bundle:dev": "./node_modules/.bin/webpack --progress --colors --define process.env.NODE_ENV='\"production\"' --optimize-minimize --optimize-dedupe",
+    "bundle:local": "./node_modules/.bin/webpack --progress --define process.env.NODE_ENV='\"local\"' --colors",
+    "bundle:watch": "./node_modules/.bin/webpack --progress --define process.env.NODE_ENV='\"local\"' --colors --watch --progress",
+    "bundle": "npm run bundle:prod",
+    "rev-parse": "git rev-parse HEAD > gitBuildHash.json",
+    "clean": "rimraf dist/*",
+    "start": "electron .",
+    "package": "electron-packager . --out dist/ --ignore \"(.idea|actions|pages|reducers|utils|test|dist|node_modules/electron.*)\" --icon icons/favicon.ico --overwrite",
+    "build": "npm run rev-parse && npm run clean && npm run bundle && npm run package"
+  },
+  "repository": "https://github.com/rwblackburn/proem-ui.git",
+  "author": {
+    "name": "RWBlackburn LLC",
+    "email": "rob@rwblackburn.com",
+    "url": "http://www.rwblackburn.com"
+  },
+  "license": "MIT",
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jasmine": true
+    },
+    "rules": {
+      "no-console": [
+        "warn"
+      ],
+      "linebreak-style": [
+        "off"
+      ],
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "no-restricted-syntax": [
+        0
+      ],
+      "import/no-extraneous-dependencies": [
+        0
+      ],
+      "import/no-unresolved": [
+        0
+      ],
+      "import/extensions": [
+        0
+      ],
+      "react/prefer-stateless-function": [
+        0
+      ],
+      "react/prop-types": [
+        1,
+        {
+          "ignore": [
+            "dispatch"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "ignoreFunctions": [
+      "/^DXImageTransform.*$/"
+    ],
+    "rules": {
+      "string-quotes": "single",
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ]
+    }
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "auth0-lock": "^10.8.0",
+    "axios": "^0.15.3",
+    "babel": "^6.5.2",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.0",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "classnames": "^2.2.5",
+    "clone": "^2.0.0",
+    "css-loader": "^0.26.1",
+    "deep-equal": "^1.0.1",
+    "electron": "^1.4.13",
+    "electron-installer-windows": "*",
+    "electron-packager": "*",
+    "electron-prebuilt": "*",
+    "eslint": "^3.1.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.6.0",
+    "file-loader": "^0.10.1",
+    "fs-plus": "*",
+    "immutability-helper": "^2.1.2",
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^2.0.3",
+    "material-design-lite": "^1.2.1",
+    "material-ui": "^0.17.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-draggable": "^2.2.3",
+    "react-dropzone": "^3.7.3",
+    "react-highcharts": "^11.0.0",
+    "react-onclickoutside": "^5.10.0",
+    "react-redux": "^4.4.6",
+    "react-router": "^2.8.1",
+    "react-tap-event-plugin": "^2.0.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-promise-middleware": "^4.1.0",
+    "redux-thunk": "^2.1.0",
+    "rimraf": "*",
+    "style-loader": "^0.13.1",
+    "stylelint": "^7.5.0",
+    "stylelint-config-standard": "^16.0.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0",
+    "yargs": "*"
+  }
+}
