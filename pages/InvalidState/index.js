@@ -1,14 +1,20 @@
-/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 
-function InvalidState() {
-  console.error('Invalid System State Error.');
-  return (
-    <div>
-      <h1>{'Invalid System State'}</h1>
-      <p>{'Sorry, an unknown state or command was given.'}</p>
-    </div>
-  );
+import { Message } from '../../domain';
+import MessageBox from '../../components/MessageBox';
+
+class InvalidState extends Component {
+    render() {
+        return (
+            <MessageBox
+                message={new Message({
+                    title: 'Invalid System State',
+                    details: 'Sorry, an unknown state or command was given.',
+                    type: 'error',
+                })}
+            />
+        );
+    }
 }
 
 export default InvalidState;

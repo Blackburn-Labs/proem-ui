@@ -10,9 +10,10 @@
 # Project Specific
 /img/*-target.*
 scratchpad.txt
+SCRATCHPAD.md
 *.log
-gitBuildHash.json
 /dist
+/test/results
 
 # Node
 /node_modules

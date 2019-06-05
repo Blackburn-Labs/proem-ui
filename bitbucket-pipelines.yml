@@ -1,0 +1,78 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:8.9.4
+
+pipelines:
+  default:
+    - step:
+        name: Test
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run lint
+          # - npm run test
+  branches:
+    develop:
+      - step:
+          name: Init
+          caches:
+            - node
+          script:
+            - npm install
+          artifacts:
+            - node_modules/**
+      - parallel:
+        - step:
+            name: Test
+            caches:
+              - node
+            script:
+              - npm run lint
+              # - npm run test
+        - step:
+            name: Bundle
+            caches:
+              - node
+            script:
+              - npm run bundle:dev
+            artifacts:
+              - renderer-bundle.js
+      - step:
+          name: Deploy
+          deployment: test
+          script:
+            - npm run deploy:dev user=$FTP_USERNAME password=$FTP_PASSWORD
+    master:
+      - step:
+          name: Init
+          caches:
+            - node
+          script:
+            - npm install
+          artifacts:
+            - node_modules/**
+      - parallel:
+        - step:
+            name: Test
+            caches:
+              - node
+            script:
+              - npm run lint
+              # - npm test
+        - step:
+            name: Bundle
+            caches:
+              - node
+            script:
+              - npm run bundle
+            artifacts:
+              - renderer-bundle.js
+      - step:
+          name: Deploy
+          deployment: production
+          script:
+            - npm run deploy user=$FTP_USERNAME password=$FTP_PASSWORD

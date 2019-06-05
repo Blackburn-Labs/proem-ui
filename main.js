@@ -15,7 +15,7 @@ let mainWindow;
  * when you should delete the corresponding element.
  */
 function appEventClosed() {
-  mainWindow = null;
+    mainWindow = null;
 }
 
 /**
@@ -23,29 +23,29 @@ function appEventClosed() {
  */
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800,
-    height: 600,
-    icon: 'icons/favicon.ico',
-    titleBarStyle: 'hidden',
-    center: true,
-    minWidth: 500,
-    minHeight: 400,
-    darkTheme: true,
-    webPreferences: {devTools: false}
-  });
+    mainWindow = new BrowserWindow({ width: 800,
+        height: 600,
+        icon: 'icons/favicon.ico',
+        titleBarStyle: 'hidden',
+        center: true,
+        minWidth: 500,
+        minHeight: 400,
+        darkTheme: true,
+        webPreferences: { devTools: false },
+    });
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true,
-  }));
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true,
+    }));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', appEventClosed);
+    mainWindow.on('closed', appEventClosed);
 }
 
 /**
@@ -53,9 +53,9 @@ function createWindow() {
  * to stay active until the user quits explicitly with Cmd + Q
  */
 function appEventWindowAllClosed() {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 }
 
 /**
@@ -63,9 +63,9 @@ function appEventWindowAllClosed() {
  * dock icon is clicked and there are no other windows open.
  */
 function appEventActivate() {
-  if (mainWindow === null) {
-    createWindow();
-  }
+    if (mainWindow === null) {
+        createWindow();
+    }
 }
 
 /**

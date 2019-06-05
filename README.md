@@ -40,13 +40,18 @@ for changed files and re-bundle the app each time, run this instead:
 ```shell
 $ npm run bundle:watch
 ``` 
-Just leave that running in a seporate terminal, and the app will rebundle with every change (allowing for a faster development cycle).  Before committing any changes to your project, you will probably want to run lint to check for code compliance:
+Just leave that running in a separate terminal, and the app will rebundle with every change (allowing for a faster development cycle).  Before committing any changes to your project, you will probably want to run lint to check for code compliance:
 ```shell
 $ npm run lint
 ```
 
 #### Running App
-You can always simple run your app in a web browser of choice bby just opening the index.html file. However, to open the app as a Windows/Mac app, use a different terminal:
+Typically during development you will just want to run the app in a web browser for easier testing. 
+```shel
+$ npm run start:web
+```
+
+However, to open the app as a Windows/Mac app:
 ```shell
 $ npm run start
 ```
@@ -77,19 +82,28 @@ The web directory contains the web UI.
 │── package.json                # The list of project dependencies and NPM scripts
 │── renderer.js                 # This root application script, will be bundled
 │── store.js                    # The root Redux data store
-└── webpack.config.js           # Bundling and optimization settings for Webpack
+└── webpack.*.js                # Bundling and optimization settings for Webpack
 ```
+### Beginning Your App
+Once you have proem running, you are ready to spin it off to make you own app. A reminder of some of the first things you'll want to do are:
+ 1. Do a project-wide search & replace on these to strings: `{{App Name}}` & `{{domain}}`
+ 1. Change the `name` in `package.json` (it's right at the top)
+ 1. Change the `/css/theme.js` to match you color palette/style.
+ 1. Generate some app specific icons/favicon. We suggest using the [RealFaviconGenerator](https://realfavicongenerator.net/) for this.
+ 1. Optionally, change the `OBJECT_KEY` and `TOKEN_KEY` in `utils/SessinUtils.js`.
+ 1. Replace this `README.md` with one specific for your project.
+
+## Appendix
+
 ### Tips/FAQ
 Q) _I need to pass environment specific values to the app, such as my API's URL or the oAuth information. Where do I do that?_
 
-A) **Check out the prodSettings, devSettings, localSettings in the webpack.config.js file. You can add environment specific settings there.**
+A) **Check out the `webpack.\*.js files`. You can add environment specific settings there. For example, `webpack.local.js` contains the settings & environment variables for running the app locally.**
 
 Q) _Best way to catch/display error messages?_
 
-A) **The /pages/App.js has a global error message display. We are using [axios](https://github.com/mzabriskie/axios) for dispatching API calls. Therefore the app can watch for any errors in the /reducer/appStateReducer.js for any of your actions (anything that ends in '_REJECTED') to catch and display any message there. However, each page should also handle specific errors themselves, to gracefully alter the display.**
+A) **The /pages/App.js has a global error message display. We are using [axios](https://github.com/mzabriskie/axios) for dispatching API calls. Therefore the app can watch for any errors in the /reducer/appStateReducer.js for any of your actions (anything that ends in `_REJECTED`) to catch and display any message there. However, each page should also handle specific errors themselves, to gracefully alter the display.**
 
-
-    
 
 ### Other Resources
 We pulled this boilerplate together from many sources over the years. One in particular is the [HTML5Boilerplate project](https://html5boilerplate.com/). This project no longer resembles that any longer, however we are big fans of that boilerplate and suggest anyone check it out. 

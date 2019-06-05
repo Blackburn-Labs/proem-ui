@@ -1,91 +1,161 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
-import { Link } from 'react-router';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Paper from 'material-ui/Paper';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import AppBar from 'material-ui/AppBar';
-import { CloseIcon, HomeIcon, InfoIcon, ErrorIcon } from '../utils/Icons';
+import {
+    AppBar,
+    Drawer,
+    IconButton,
+    Typography,
+    Toolbar,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    withStyles,
+} from '@material-ui/core';
 
-@connect((store) =>
-  ({
+import Actions from '../actions';
+import { Message, MessageArray } from '../domain';
+import { CloseIcon, InfoIcon, MenuIcon, HomeIcon } from '../utils/Icons';
+import MessageBox from '../components/MessageBox';
+
+const styles = theme => ({
+    content: {
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        width: '100%',
+        position: 'absolute',
+        zIndex: '-1',
+        bottom: 0,
+        top: 64,
+        padding: 0,
+    },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: theme.spacing.unit * 2,
+        justifyContent: 'flex-end',
+    },
+    errorMsg: {
+        margin: theme.spacing.unit,
+    },
+});
+
+const propMap = store => ({
+    errors: store.appState.errors,
     title: store.appState.title,
-    errorMsg: store.appState.errorMsg,
-  }),
-)
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-  }
+});
 
-  componentWillReceiveProps() {
-    this.closeMenu();
-  }
+class App extends Component {
+    static propTypes = {
+        title: PropTypes.string,
+        errors: PropTypes.instanceOf(MessageArray),
+        children: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.node,
+        ]),
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        dispatch: PropTypes.func,
+        classes: PropTypes.object.isRequired,
+    };
 
-  closeMenu = () => this.setState({ open: false });
-  openMenu = () => this.setState({ open: true });
+    static defaultProps = {
+        title: '',
+        errors: new MessageArray(),
+    };
 
-  render() {
-    let message = '';
-    let children = null;
-    if (this.props.children) {
-      children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth,
-      });
+    constructor(props) {
+        super(props);
+        this.actions = new Actions(this.props.dispatch);
+        this.state = { open: false };
     }
 
-    if (this.props.errorMsg) {
-      message = (
-        <Paper className="error-page" zDepth={3}>
-          <ErrorIcon />
-          <p>{this.props.errorMsg}</p>
-        </Paper>
-      );
+    componentWillMount() {
+        const { UserActions, AppStateActions } = this.actions;
+        UserActions.logRestore();
+
+        window.onerror = (message, url, lineNumber, colNumber, error) => {
+            const errorObject = new Message({
+                title: 'Client Error',
+                details: message,
+                source: {error, lineNumber, colNumber},
+            });
+            console.warn({errorObject});
+            AppStateActions.errorFound(errorObject);
+            return false;
+        };
     }
 
-    return (
-      <div>
-        <Drawer
-          open={this.state.open}
-          docked={false}
-          onRequestChange={(open) => this.setState({ open })}
-        >
-          <MenuItem
-            onTouchTap={this.closeMenu}
-            rightIcon={<CloseIcon />}
-          />
-          <MenuItem
-            primaryText="Home"
-            containerElement={<Link to="/" />}
-            leftIcon={<HomeIcon />}
-          />
-          <MenuItem
-            primaryText="About"
-            containerElement={<Link to="/about" />}
-            leftIcon={<InfoIcon />}
-          />
-        </Drawer>
-        <AppBar title={this.props.title} onLeftIconButtonTouchTap={this.openMenu} />
-        {message}
-        {children}
-      </div>
-    );
-  }
+    closeMenu = () => this.setState({ open: false });
+    openMenu = () => this.setState({ open: true });
+
+    handleGoHome = () => {
+        this.go('/');
+    };
+
+    handleGoAbout = () => {
+        this.go('/about');
+    };
+
+    go = (path) => {
+        const { history } = this.props;
+        history.push(path);
+        this.closeMenu();
+    };
+
+    render() {
+        const { title, errors, children, classes } = this.props;
+        return (
+            <Fragment>
+                <Drawer
+                    open={this.state.open}
+                    location={location}
+                    onClose={this.closeMenu}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton color="inherit" onClick={this.closeMenu}>
+                            <CloseIcon />
+                        </IconButton>
+                    </div>
+                    <List>
+                        <ListItem button key={'Dashboard'} onClick={this.handleGoHome}>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
+                            <ListItemText primary={'Dashboard'} />
+                        </ListItem>
+                        <ListItem button key={'About'} onClick={this.handleGoAbout}>
+                            <ListItemIcon><InfoIcon /></ListItemIcon>
+                            <ListItemText primary={'About'} />
+                        </ListItem>
+                    </List>
+                </Drawer>
+                <AppBar position="static" color="primary">
+                    <Toolbar>
+                        <IconButton color="inherit" onClick={this.openMenu}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" color="inherit" style={{ flexGrow: 1 }}>
+                            {title}
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div className={classes.content}>
+                    {errors.map(e => (
+                        <MessageBox
+                            key={e.id}
+                            className={classes.errorMsg}
+                            message={e}
+                            enabled={e.getSecondsOld() < 6}
+                        />
+                    ))}
+                    {children}
+                </div>
+            </Fragment>
+        );
+    }
 }
 
-
-App.propTypes = {
-  title: React.PropTypes.string,
-  errorMsg: React.PropTypes.string,
-  route: React.PropTypes.shape({
-    auth: React.PropTypes.shape({
-      logout: React.PropTypes.func,
-    }),
-  }),
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.node),
-    React.PropTypes.node,
-  ]),
-};
+export default withRouter(connect(propMap)(withStyles(styles)(App)));

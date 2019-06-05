@@ -6,45 +6,62 @@ An example of using Axios (just to make copy/paste easier) ...
 ```javascript
 import axios from 'axios';
 
-const baseUrl = `http://localhost:8080/api`;
+const baseUrl = `${Config.apiUrl}/classes/ClassName`;
+const baseName = 'EXAMPLE';
 
 export function getItem(id) {
     return {
-        type: 'GET_ITEM',
-        payload: axios.get(`${baseUrl}/get.json?id=${id}`),
+        type: `${baseName}_GET`,
+        payload: axios.get(`${baseUrl}/${id}`),
     };
 }
 ```
 
 In the page you would use code as such:
 ```javascript
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getItem } from '../../actions/exampleAction';
 
-@connect
-export default class ExamplePage extends React.Component {
-    getSomething = (id) => {
-        this.props.dispatch(getItem(id));
+import Actions, { actionProvider } from '../../actions';
+
+const propMap = store => ({});
+
+const propTypes = {
+    actions: PropTypes.instanceOf(Actions),
+};
+
+const defaultProps = {};
+
+class ExamplePage extends Component {
+    handleSomething = (id) => {
+        const { actions: { ExampleAction } } = this.props;
+        ExampleAction.getItem(id);
     };
-    ...
+    
+    // ...
 }
+
+ExamplePage.propTypes = propTypes;
+ExamplePage.defaultProps = defaultProps;
+export default connect(propMap, actionProvider)(ExamplePage);
 ```
 
 In the reducer, you would use code such as:
 ```javascript
+const baseName = 'EXAMPLE';
+
 export default function reducer(state = initState, action) {
     switch (action.type) {
-        case 'GET_ITEM_PENDING': {
-            ...
+        case `${baseName}_GET_PENDING`: {
+            // ...
         }
         
-        case 'GET_ITEM_REJECTED': {
-            ...
+        case `${baseName}_GET_REJECTED`: {
+            // ...
         }
 
-        case 'GET_ITEM_FULFILLED': {
-            ...
+        case `${baseName}_GET_FULFILLED`: {
+            // ...
         }
 
         default: {

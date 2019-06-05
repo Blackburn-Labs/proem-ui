@@ -1,33 +1,81 @@
+import Config from 'Config';
+
+import { MessageArray, Message } from '../domain';
+
 const initState = {
-  title: '',
-  isAuthenticated: false,
-  isAuthenticating: false,
-  errorMsg: null,
-  errorObject: null,
+    title: '',
+    errors: new MessageArray(),
 };
 
 export default function reducer(state = initState, action) {
-  switch (action.type) {
-    case 'TITLE_CHANGE': {
-      return { ...state, title: action.payload, errorMsg: null, errorObject: null, isError: false };
+    if (action.type.includes('_REJECTED') || action.type.includes('ERROR_')) {
+        const errors = state.errors.clone();
+        let title = action.payload.title || action.payload.message;
+        const details = action.payload.details;
+        console.warn({action}); // TODO REMOVE
+
+        if (action.type === 'USER_LOGIN_REJECTED') {
+            title = 'Login Failed';
+        } else if (action.payload != null && action.payload.response != null) {
+            switch (action.payload.response.status) {
+
+                case 400:
+                case 406: {
+                    title = 'Bad Connection';
+                    break;
+                }
+
+                case 401:
+                case 403: {
+                    title = 'Login Session Expire or Invalid';
+                    break;
+                }
+
+                case 404: {
+                    title = 'Object Not Found';
+                    break;
+                }
+
+                case 500: {
+                    title = 'Server Error';
+                    break;
+                }
+
+                case 502:
+                case 503:
+                case 504: {
+                    title = 'Server Unavailable';
+                    break;
+                }
+
+                default: {
+                    title = `Unknown Error (${action.payload.response.status})`;
+                }
+            }
+        }
+
+        const message = new Message({ title, details, source: action.payload, type: 'error' });
+        errors.add(message);
+
+        if (Config.isDebugging) {
+            // eslint-disable-next-line no-console
+            console.error(message);
+        }
+
+        return {
+            ...state,
+            errors,
+        };
     }
 
-    case 'ERROR_FOUND': {
-      // console.error(action.payload.message, action.payload);
-      return {
-        ...state,
-        errorMsg: action.payload.message,
-        errorObject: action.payload,
-        isError: true,
-      };
-    }
+    switch (action.type) {
 
-    case 'CLEAR_ERROR': {
-      return { ...state, errorMsg: null, errorObject: null, isError: false };
-    }
+        case 'SET_TITLE': {
+            return { ...state, ...action.payload };
+        }
 
-    default: {
-      return state;
+        default: {
+            return state;
+        }
     }
-  }
 }

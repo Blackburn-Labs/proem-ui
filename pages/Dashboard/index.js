@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Typography, withStyles } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import { Paper, Typography, withStyles } from '@material-ui/core';
 
 import Actions, { actionProvider } from '../../actions';
-import MessageBox from '../../components/MessageBox';
-import { Message } from '../../domain';
 
 const styles = theme => ({
     root: {
@@ -18,7 +15,7 @@ const styles = theme => ({
 
 const propMap = () => ({});
 
-class About extends Component {
+class Dashboard extends Component {
     static propTypes = {
         actions: PropTypes.instanceOf(Actions),
         classes: PropTypes.object.isRequired,
@@ -30,26 +27,23 @@ class About extends Component {
 
     componentWillMount() {
         const { actions: { AppStateActions } } = this.props;
-        AppStateActions.setTitle('About');
+        AppStateActions.setTitle('Home');
     }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <Paper className={classes.root} elevation={3}>
+            <Paper className={classes.root} elevation={1}>
                 <Typography variant="h2">
-                    About
+                    Welcome to Proem UI
                 </Typography>
-                <MessageBox
-                    message={new Message({
-                        title: 'Reminder',
-                        details: 'Add your app\'s information and support links here.',
-                    })}
-                />
+                <Typography paragraph>
+                    Congratulations! You have successfully installed and executed the app.
+                </Typography>
             </Paper>
         );
     }
 }
 
-export default withRouter(connect(propMap, actionProvider)(withStyles(styles)(About)));
+export default withRouter(connect(propMap, actionProvider)(withStyles(styles)(Dashboard)));
