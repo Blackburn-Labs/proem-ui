@@ -84,7 +84,6 @@ class App extends Component {
                 details: message,
                 source: {error, lineNumber, colNumber},
             });
-            console.warn({errorObject});
             AppStateActions.errorFound(errorObject);
             return false;
         };

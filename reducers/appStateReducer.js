@@ -12,7 +12,6 @@ export default function reducer(state = initState, action) {
         const errors = state.errors.clone();
         let title = action.payload.title || action.payload.message;
         const details = action.payload.details;
-        console.warn({action}); // TODO REMOVE
 
         if (action.type === 'USER_LOGIN_REJECTED') {
             title = 'Login Failed';
