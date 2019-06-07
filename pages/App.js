@@ -16,7 +16,7 @@ import {
     withStyles,
 } from '@material-ui/core';
 
-import Actions from '../actions';
+import Actions, { actionProvider } from '../actions';
 import { Message, MessageArray } from '../domain';
 import { CloseIcon, InfoIcon, MenuIcon, HomeIcon } from '../utils/Icons';
 import MessageBox from '../components/MessageBox';
@@ -59,7 +59,7 @@ class App extends Component {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        dispatch: PropTypes.func,
+        actions: PropTypes.instanceOf(Actions),
         classes: PropTypes.object.isRequired,
     };
 
@@ -68,14 +68,12 @@ class App extends Component {
         errors: new MessageArray(),
     };
 
-    constructor(props) {
-        super(props);
-        this.actions = new Actions(this.props.dispatch);
-        this.state = { open: false };
-    }
+    state = {
+        open: false,
+    };
 
     componentWillMount() {
-        const { UserActions, AppStateActions } = this.actions;
+        const { actions: { UserActions, AppStateActions } } = this.props;
         UserActions.logRestore();
 
         window.onerror = (message, url, lineNumber, colNumber, error) => {
@@ -157,4 +155,4 @@ class App extends Component {
     }
 }
 
-export default withRouter(connect(propMap)(withStyles(styles)(App)));
+export default withRouter(connect(propMap, actionProvider)(withStyles(styles)(App)));
