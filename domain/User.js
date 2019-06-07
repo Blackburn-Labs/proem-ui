@@ -10,7 +10,7 @@ export default class User extends BasicDomain {
         this.email = props.email || '';
         this.createdAt = props.createdAt || undefined;
         this.updatedAt = props.updatedAt || undefined;
-        this.ACL = props.ACL || {"*": { read: false }};
+        this.ACL = props.ACL || { '*': { read: false } };
         this.sessionToken = props.sessionToken || undefined;
     }
 }

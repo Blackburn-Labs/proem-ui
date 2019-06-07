@@ -82,7 +82,7 @@ class App extends Component {
             const errorObject = new Message({
                 title: 'Client Error',
                 details: message,
-                source: {error, lineNumber, colNumber},
+                source: { error, lineNumber, colNumber },
             });
             AppStateActions.errorFound(errorObject);
             return false;

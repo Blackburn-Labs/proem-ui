@@ -7,10 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { Message } from '../../domain';
 import { ErrorIcon, WarnIcon, InfoIcon } from '../../utils/Icons';
 
-
-
-
-
 const styles = theme => ({
     root: {},
     messageText: {
