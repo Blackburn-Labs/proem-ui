@@ -2,36 +2,39 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Paper, Typography, withStyles } from '@material-ui/core';
+import {
+    Paper,
+    Typography,
+    withStyles,
+} from '@material-ui/core';
 
 import Actions, { actionProvider } from '../../actions';
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit * 2,
+        padding: theme.spacing(2),
         textAlign: 'center',
+        margin: theme.spacing(2),
     },
 });
 
-const propMap = () => ({});
+const propMap = store => ({
+    user: store.user.user,
+});
 
 class Dashboard extends Component {
     static propTypes = {
-        actions: PropTypes.instanceOf(Actions),
+        actions: PropTypes.instanceOf(Actions).isRequired,
         classes: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {};
-
-    state = {};
-
-    componentWillMount() {
-        const { actions: { AppStateActions } } = this.props;
-        AppStateActions.setTitle('Home');
-    }
+    static defaultProps = {
+    };
 
     render() {
-        const { classes } = this.props;
+        const {
+            classes,
+        } = this.props;
 
         return (
             <Paper className={classes.root} elevation={1}>

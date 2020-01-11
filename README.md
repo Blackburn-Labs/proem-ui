@@ -23,24 +23,19 @@ To get started, developers will need to install two things first:
 To install and run the app:
 ```shell
 ### 1. Clone this repository
-$ git clone https://github.com/rwblackburn/proem-ui.git
+$ git clone https://github.com/rwblackburn/proem-ui.git your-project-name
 
 ### 2. Go into the app
-$ cd proem-ui
+$ cd your-project-name
 
 ### 3. Install dependencies
 $ npm install
 
 ### 4. Start the webpack
-$ npm run bundle:local
+$ npm start
 ``` 
 
-This will run webpack (generating the `renderer-bundle.js` file). If you would like to watch
-for changed files and re-bundle the app each time, run this instead:
-```shell
-$ npm run bundle:watch
-``` 
-Just leave that running in a separate terminal, and the app will rebundle with every change (allowing for a faster development cycle).  Before committing any changes to your project, you will probably want to run lint to check for code compliance:
+This will run webpack (generating the `renderer-bundle.js` file). Just leave that running in your terminal, and the app will rebundle with every change (allowing for a faster development cycle).  Before committing any changes to your project, you will probably want to run lint to check for code compliance:
 ```shell
 $ npm run lint
 ```
@@ -48,12 +43,12 @@ $ npm run lint
 #### Running App
 Typically during development you will just want to run the app in a web browser for easier testing. 
 ```shel
-$ npm run start:web
+$ npm start
 ```
 
 However, to open the app as a Windows/Mac app:
 ```shell
-$ npm run start
+$ npm run start:client
 ```
 
 When you are ready, package up the app as an executable using:

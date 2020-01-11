@@ -35,11 +35,11 @@ const styles = theme => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
-        paddingTop: theme.spacing.unit * 2,
+        paddingTop: theme.spacing(2),
         justifyContent: 'flex-end',
     },
     errorMsg: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(),
     },
 });
 

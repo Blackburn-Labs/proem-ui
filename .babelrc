@@ -1,11 +1,18 @@
 {
   "presets": [
-    "react",
-    "es2015",
-    "stage-1"
+    "@babel/preset-react",
+    ["@babel/preset-env",
+      {
+        "targets": {
+          "chrome": 52,
+          "browsers": ["last 2 versions", "not dead"]
+        }
+      }
+    ]
   ],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-transform-object-set-prototype-of-to-assign",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from"
   ]
 }

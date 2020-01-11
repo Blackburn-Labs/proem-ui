@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Config from 'Config';
 
-import { asPromise, generateHeader } from '../actions';
+import { asPromise, generateHeader } from './utils';
 
 const baseUrl = Config.apiUrl;
 const baseName = 'USER';
