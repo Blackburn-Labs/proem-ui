@@ -47,6 +47,9 @@ module.exports = {
         ],
     },
     resolve: {
-        modules: [path.join(__dirname, 'node_modules')],
+        modules: [
+            path.resolve('./'),
+            path.join(__dirname, 'node_modules'),
+        ],
     },
 };
