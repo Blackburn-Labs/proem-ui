@@ -1,4 +1,4 @@
-Proem UI Boilerplate Project
+Proem UI Framework
 ===========
 
 This is a ReactJS project boilerplate. This includes, by default:
