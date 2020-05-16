@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "cross-env eslint . --ext .js --ext .jsx  --ignore-path .gitignore --cache",
     "test": "karma start --single-run=true --watch=false karma.conf.js",
-    "test:watch": "karma start --single-run=false --watch=true karma.conf.js",
+    "test:watch": "karma start --single-run=false --watch=true --browsers Chrome karma.conf.js",
     "bundle:prod": "cross-env webpack --progress --config webpack.prod.js",
     "bundle:stage": "cross-env webpack --progress --config webpack.stage.js",
     "bundle:dev": "cross-env webpack --progress --config webpack.dev.js",
