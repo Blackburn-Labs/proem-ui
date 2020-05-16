@@ -35,8 +35,18 @@ const success = {
 
 const palette = {
     type: 'light',
-    primary: { main: 'rgb(156, 39, 176)' },
-    secondary: { main: 'rgb(67, 160, 71)' },
+    primary: {
+        light: '#c34cd7',
+        main: '#9c27b0',
+        dark: '#641971',
+        contrastText: '#fff',
+    },
+    secondary: {
+        light: '#9ad69a',
+        main: '#64c064',
+        dark: '#3e993e',
+        contrastText: '#fff',
+    },
     error,
     warning,
     info,
