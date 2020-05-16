@@ -32,6 +32,7 @@ module.exports = (config) => {
         },
 
         webpack: {
+            mode: 'development',
             module: {
                 rules: [
                     {
@@ -74,7 +75,7 @@ module.exports = (config) => {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['ChromeHeadless'],
+        browsers: ['Chrome'],
         // browsers: ['PhantomJS'],
 
         // Continuous Integration mode
