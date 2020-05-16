@@ -28,11 +28,3 @@ export function logRestore() {
         payload: asPromise({}),
     };
 }
-
-export function fail() {
-    const headers = generateHeader();
-    return {
-        type: `${baseName}_FAIL`,
-        payload: axios.get('https://www.FAIL-ME-dsds324567bvfnhjhgkoiuytgrfdxcadadsadsa.com', { headers }),
-    };
-}

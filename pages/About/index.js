@@ -9,7 +9,7 @@ import Actions, { actionProvider } from '../../actions';
 import MessageBox from '../../components/MessageBox';
 import { Message } from '../../domain';
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         padding: theme.spacing(2),
         textAlign: 'center',
@@ -20,7 +20,7 @@ const propMap = () => ({});
 
 class About extends Component {
     static propTypes = {
-        actions: PropTypes.instanceOf(Actions),
+        actions: PropTypes.instanceOf(Actions).isRequired,
         classes: PropTypes.object.isRequired,
     };
 
@@ -28,7 +28,7 @@ class About extends Component {
 
     state = {};
 
-    componentWillMount() {
+    componentDidMount() {
         const { actions: { AppStateActions } } = this.props;
         AppStateActions.setTitle('About');
     }

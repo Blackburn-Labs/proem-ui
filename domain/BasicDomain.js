@@ -2,17 +2,14 @@
 export default class BasicDomain {
     getMyClass() { return BasicDomain; }
 
-    constructor(props) {
-        this.source = props;
-    }
-
     clone = () => {
         const C = this.getMyClass();
         return new C(this);
     };
 
+    value = (k, v) => { if (v == null) { return this[k]; } this[k] = v; return this; };
+
     isSavable = () => false;
 
-    equals = obj => this === obj;
+    equals = (obj) => this === obj;
 }
-

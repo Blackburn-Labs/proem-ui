@@ -1,11 +1,15 @@
 import BasicDomain from './BasicDomain';
 
-export default class BasicArray {
+export default class BasicArray extends Array {
     getMyClass() { return BasicArray; }
+
     getMyItemClass() { return BasicDomain; }
 
     constructor(items = []) {
-        items.forEach(item => (this.add(item)));
+        super();
+        for (let i = 0; i < items.length; i += 1) {
+            this.add(items[i]);
+        }
         this.sort();
     }
 
@@ -18,19 +22,27 @@ export default class BasicArray {
         const C = this.getMyItemClass();
         this.push(new C(item));
         this.sort();
+        return this;
     };
 
     update = (item) => {
-        this.remove(item);
-        this.add(item);
+        for (let i = 0, len = this.length; i < len; i += 1) {
+            if (this[i].equals(item)) {
+                this[i] = item;
+            }
+        }
+        return this;
     };
 
-    get = id => this.find(e => e.id === id);
+    get = (id) => this.find((e) => e.id === id);
+
+    contains = (item) => this.get(item.id) != null;
 
     remove = (target) => {
-        const newList = this.filter(item => !item.equals(target));
+        const newList = this.filter((item) => !item.equals(target));
         this.splice(0);
-        newList.forEach(item => this.push(item));
+        newList.forEach((item) => this.push(item));
+        return this;
     };
 
     isEmpty = () => (this.length === 0);
@@ -50,7 +62,7 @@ export default class BasicArray {
 
     sort = () => super.sort(this.comparator);
 
-    toJSON = () => this.map(item => item);
-}
+    toJSON = () => this.map((item) => item);
 
-BasicArray.prototype = Object.create(Array.prototype);
+    toIds = () => this.map((item) => item.id);
+}

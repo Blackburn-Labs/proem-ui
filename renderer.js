@@ -14,8 +14,9 @@ import Dashboard from './pages/Dashboard';
 import InvalidState from './pages/InvalidState';
 
 // Prevent default browser loading of drag & drop files.
-document.ondragover = document.ondrop = ev => ev.preventDefault;
-document.body.ondrop = ev => ev.preventDefault;
+// eslint-disable-next-line no-multi-assign
+document.ondragover = document.ondrop = (ev) => ev.preventDefault;
+document.body.ondrop = (ev) => ev.preventDefault;
 
 
 ReactDOM.render((

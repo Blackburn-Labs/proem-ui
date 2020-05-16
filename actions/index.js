@@ -27,8 +27,8 @@ export default class Actions {
         const a2b = { ...actionsToBind };
         Object.keys(a2b).forEach((key) => { a2b[key] = bindActionCreators(a2b[key], this.dispatch); });
         return a2b;
-    };
+    }
 }
 
-/** A function that creates a action provider, used within a react-redux `connect` injection call **/
-export const actionProvider = dispatch => ({ actions: new Actions(dispatch) });
+/** A function that creates a action provider, used within a react-redux `connect` injection call * */
+export const actionProvider = (dispatch) => ({ actions: new Actions(dispatch) });

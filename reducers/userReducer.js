@@ -21,7 +21,6 @@ export default function reducer(state = initState, action) {
     }
 
     switch (action.type) {
-
         case `${baseName}_LOGOUT`:
         case `${baseName}_LOGIN_REJECTED`: {
             SessionUtils.clear();

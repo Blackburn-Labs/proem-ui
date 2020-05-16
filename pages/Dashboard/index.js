@@ -10,7 +10,7 @@ import {
 
 import Actions, { actionProvider } from '../../actions';
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         padding: theme.spacing(2),
         textAlign: 'center',
@@ -18,7 +18,7 @@ const styles = theme => ({
     },
 });
 
-const propMap = store => ({
+const propMap = (store) => ({
     user: store.user.user,
 });
 
@@ -30,6 +30,11 @@ class Dashboard extends Component {
 
     static defaultProps = {
     };
+
+    componentDidMount() {
+        const { actions: { AppStateActions } } = this.props;
+        AppStateActions.setTitle('Dashboard');
+    }
 
     render() {
         const {

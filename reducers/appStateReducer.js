@@ -11,13 +11,12 @@ export default function reducer(state = initState, action) {
     if (action.type.includes('_REJECTED') || action.type.includes('ERROR_')) {
         const errors = state.errors.clone();
         let title = action.payload.title || action.payload.message;
-        const details = action.payload.details;
+        const { details } = action.payload;
 
         if (action.type === 'USER_LOGIN_REJECTED') {
             title = 'Login Failed';
         } else if (action.payload != null && action.payload.response != null) {
             switch (action.payload.response.status) {
-
                 case 400:
                 case 406: {
                     title = 'Bad Connection';
@@ -53,7 +52,9 @@ export default function reducer(state = initState, action) {
             }
         }
 
-        const message = new Message({ title, details, source: action.payload, type: 'error' });
+        const message = new Message({
+            title, details, source: action.payload, type: 'error',
+        });
         errors.add(message);
 
         if (Config.isDebugging) {
@@ -68,7 +69,6 @@ export default function reducer(state = initState, action) {
     }
 
     switch (action.type) {
-
         case 'SET_TITLE': {
             return { ...state, ...action.payload };
         }

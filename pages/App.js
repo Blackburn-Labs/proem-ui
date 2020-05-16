@@ -18,10 +18,12 @@ import {
 
 import Actions, { actionProvider } from '../actions';
 import { Message, MessageArray } from '../domain';
-import { CloseIcon, InfoIcon, MenuIcon, HomeIcon } from '../utils/Icons';
+import {
+    CloseIcon, InfoIcon, MenuIcon, HomeIcon,
+} from '../utils/Icons';
 import MessageBox from '../components/MessageBox';
 
-const styles = theme => ({
+const styles = (theme) => ({
     content: {
         overflowY: 'auto',
         overflowX: 'hidden',
@@ -43,7 +45,7 @@ const styles = theme => ({
     },
 });
 
-const propMap = store => ({
+const propMap = (store) => ({
     errors: store.appState.errors,
     title: store.appState.title,
 });
@@ -55,11 +57,11 @@ class App extends Component {
         children: PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.node),
             PropTypes.node,
-        ]),
+        ]).isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        actions: PropTypes.instanceOf(Actions),
+        actions: PropTypes.instanceOf(Actions).isRequired,
         classes: PropTypes.object.isRequired,
     };
 
@@ -72,7 +74,7 @@ class App extends Component {
         open: false,
     };
 
-    componentWillMount() {
+    componentDidMount() {
         const { actions: { UserActions, AppStateActions } } = this.props;
         UserActions.logRestore();
 
@@ -88,6 +90,7 @@ class App extends Component {
     }
 
     closeMenu = () => this.setState({ open: false });
+
     openMenu = () => this.setState({ open: true });
 
     handleGoHome = () => {
@@ -105,12 +108,14 @@ class App extends Component {
     };
 
     render() {
-        const { title, errors, children, classes } = this.props;
+        const {
+            title, errors, children, classes,
+        } = this.props;
+        const { open } = this.state;
         return (
-            <Fragment>
+            <>
                 <Drawer
-                    open={this.state.open}
-                    location={location}
+                    open={open}
                     onClose={this.closeMenu}
                 >
                     <div className={classes.drawerHeader}>
@@ -119,13 +124,13 @@ class App extends Component {
                         </IconButton>
                     </div>
                     <List>
-                        <ListItem button key={'Dashboard'} onClick={this.handleGoHome}>
+                        <ListItem button key="Dashboard" onClick={this.handleGoHome}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
-                            <ListItemText primary={'Dashboard'} />
+                            <ListItemText primary="Dashboard" />
                         </ListItem>
-                        <ListItem button key={'About'} onClick={this.handleGoAbout}>
+                        <ListItem button key="About" onClick={this.handleGoAbout}>
                             <ListItemIcon><InfoIcon /></ListItemIcon>
-                            <ListItemText primary={'About'} />
+                            <ListItemText primary="About" />
                         </ListItem>
                     </List>
                 </Drawer>
@@ -140,7 +145,7 @@ class App extends Component {
                     </Toolbar>
                 </AppBar>
                 <div className={classes.content}>
-                    {errors.map(e => (
+                    {errors.map((e) => (
                         <MessageBox
                             key={e.id}
                             className={classes.errorMsg}
@@ -150,7 +155,7 @@ class App extends Component {
                     ))}
                     {children}
                 </div>
-            </Fragment>
+            </>
         );
     }
 }

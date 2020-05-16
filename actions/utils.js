@@ -2,7 +2,7 @@ import Config from 'Config';
 
 import SessionUtils from '../utils/SessionUtils';
 
-/** A function to help action functions get the HTTP header to the backend server. **/
+/** A function to help action functions get the HTTP header to the backend server. * */
 export function generateHeader() {
     const h = {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export function generateHeader() {
     return h;
 }
 
-/** Convenience function for quickly making promises for action function to return **/
+/** Convenience function for quickly making promises for action function to return * */
 export function asPromise(packet) {
     return () => new Promise((resolve) => {
         resolve(packet);

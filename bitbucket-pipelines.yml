@@ -14,7 +14,7 @@ pipelines:
         script:
           - npm install
           - npm run lint
-          # - npm run test
+          - npm run test
   branches:
     develop:
       - step:
@@ -32,7 +32,7 @@ pipelines:
               - node
             script:
               - npm run lint
-              # - npm run test
+              - npm run test
         - step:
             name: Bundle
             caches:
@@ -41,11 +41,6 @@ pipelines:
               - npm run bundle:dev
             artifacts:
               - renderer-bundle.js
-      - step:
-          name: Deploy
-          deployment: test
-          script:
-            - npm run deploy:dev user=$FTP_USERNAME password=$FTP_PASSWORD
     master:
       - step:
           name: Init
@@ -62,7 +57,7 @@ pipelines:
               - node
             script:
               - npm run lint
-              # - npm test
+              - npm test
         - step:
             name: Bundle
             caches:
@@ -71,8 +66,3 @@ pipelines:
               - npm run bundle
             artifacts:
               - renderer-bundle.js
-      - step:
-          name: Deploy
-          deployment: production
-          script:
-            - npm run deploy user=$FTP_USERNAME password=$FTP_PASSWORD

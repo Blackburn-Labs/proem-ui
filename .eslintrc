@@ -43,6 +43,8 @@
       2,
       {"forbid": ["any", "array"]}
     ],
+    "react/static-property-placement": ["error", "static public field"],
+    "react/state-in-constructor": [0],
     "no-unused-vars": [
       "error", {
         "varsIgnorePattern": "[iI]gnored||connect"
