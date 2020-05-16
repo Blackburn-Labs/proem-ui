@@ -8,7 +8,6 @@ This is a ReactJS project boilerplate. This includes, by default:
 * [Webpack](https://webpack.github.io/) - Bundles the app. 
 * [Jasmine](https://jasmine.github.io/)/[Karma](https://karma-runner.github.io) - Tests the app. 
 * [Axios](https://github.com/mzabriskie/axios) - Makes promise base HTTP calls for the app. 
-* [Electron](https://electron.atom.io/) - Make the app run as native Windows/Mac clients. 
 * [Material-ui](http://www.material-ui.com/) - Makes the app pretty.
 
 Developer Setup
