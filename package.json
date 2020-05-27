@@ -1,6 +1,6 @@
 {
   "name": "proem-ui",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "main.js",
   "scripts": {
     "lint": "cross-env eslint . --ext .js --ext .jsx  --ignore-path .gitignore --cache",
