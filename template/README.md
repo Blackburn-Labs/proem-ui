@@ -1,7 +1,7 @@
 Proem UI Framework
 ===========
 
-This is a ReactJS project boilerplate. This includes, by default:
+This is a ReactJS project using:
 
 * [Redux](http://redux.js.org/) - Maintains the state of the app.
 * [Babel](https://babeljs.io/) - Compiles the app.
@@ -10,20 +10,35 @@ This is a ReactJS project boilerplate. This includes, by default:
 * [Axios](https://github.com/mzabriskie/axios) - Makes promise base HTTP calls for the app. 
 * [Material-ui](http://www.material-ui.com/) - Makes the app pretty.
 
-This framework is designed to be a web app (a SPA), which can easily be deployed using something like [Electron](https://www.electronjs.org/) (to deploy it as a Windows/Mac client) or [Cordova](https://cordova.apache.org/) (to deploy it as a iOS/Andoird app)
+#### Beginning Your App Reminders
 
-Getting Started
+Once you have proem running, you are ready to spin it off to make you own app. A reminder of some of the first things you'll want to do are:
+ 1. Do a project-wide search & replace on these to strings: `{{App Name}}` & `{{domain}}`
+ 1. Change the `name` in `package.json` (it's right at the top)
+ 1. Change the `/css/theme.js` to match you color palette/style.
+ 1. Generate some app specific icons/favicon. We suggest using the [RealFaviconGenerator](https://realfavicongenerator.net/) for this.
+ 1. Optionally, change the `OBJECT_KEY` and `TOKEN_KEY` in `utils/SessinUtils.js`.
+ 1. Replace this `README.md` with one specific for your project.
+
+Run Project
 ---------------
-To create your app, run:
+If you have not done so already, run:
 ```shell
-$ npx proem-ui my-app
+$ npm install
 ```
 
-Once done, simple run:
+Once done, run:
 ```
-$ cd my-app
 $ npm start
 ``` 
+
+This will build the project and start it in a browser.
+
+Before committing any changes to your project, please run unit tests and lint to check for code compliance:
+```shell
+$ npm run test
+$ npm run lint
+```
 
 Directory Layout
 ---------------
@@ -50,5 +65,3 @@ The web directory contains the web UI.
 Getting Help
 ---------------
 Guides, tutorials, and tips can be found on the [Proem-UI site](http://www.proemui.com/).
-
-

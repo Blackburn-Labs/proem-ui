@@ -8,12 +8,20 @@
 .settings
 
 # Project Specific
+/img/*-target.*
 scratchpad.txt
 SCRATCHPAD.md
 *.log
+/dist
+/test/results
 
 # Node
 /node_modules
+renderer-bundle.js
+renderer-bundle.js.map
+
+# Lint
+.eslintcache
 
 # OS
 .DS_Store
