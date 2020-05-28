@@ -10,7 +10,7 @@ const test = [Icons.CloseIcon, Icons.ErrorIcon];
 export const IconLibrary = () => (
     <>
         {iconNames.map((iconName, ix) => (
-            <dl style={{ display: 'inline-block', padding: '1em', textAlign: 'center' }}>
+            <dl key={iconName} style={{ display: 'inline-block', padding: '1em', textAlign: 'center' }}>
                 <dd style={{ margin: 'auto' }}>{iconModules[ix]()}</dd>
                 <dt>{iconName}</dt>
             </dl>
