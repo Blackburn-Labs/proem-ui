@@ -1,29 +1,25 @@
 {
   "name": "proem-ui",
+  "homepage": "http://www.proemui.com/",
+  "description": "A ReactJS framework for fast app development",
   "version": "2.0.0",
   "keywords": [
     "react"
   ],
-  "bin": {
-    "proem-ui": "./main.js"
-  },
+  "main": "main.js",
   "engines": {
     "node": ">=10"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Blackburn-Labs/proem-ui.git",
+    "url": "git+https://github.com/Blackburn-Labs/proem-ui.git",
     "directory": "packages/npm"
   },
   "bugs": {
     "url": "https://github.com/Blackburn-Labs/proem-ui/issues"
   },
   "license": "MIT",
-  "author": {
-    "name": "Blackburn Labs",
-    "email": "rob@blackburnlabs.com",
-    "url": "http://www.blackburnlabs.com"
-  },
+  "author": "Blackburn Labs <info@blackburnlabs.com> (http://www.blackburnlabs.com)",
   "dependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
