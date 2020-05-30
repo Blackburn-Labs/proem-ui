@@ -4,7 +4,7 @@ import moment from 'moment';
 const DATE_FORMAT_SHORT = 'MMM Do';
 const DATE_FORMAT_LONG = 'MMM Do, YYYY';
 const PWD_REGEX = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})');
-const EMAIL_REGEX = new RegExp('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\\b');
+const EMAIL_REGEX = new RegExp('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+(?:[A-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\\b');
 
 export default class CommonUtils {
     static EMPTY_FUNCTION = () => {};
