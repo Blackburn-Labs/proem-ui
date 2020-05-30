@@ -8,12 +8,19 @@
 .settings
 
 # Project Specific
+/img/*-target.*
 scratchpad.txt
 SCRATCHPAD.md
 *.log
+/dist
+/test/results
 
 # Node
 /node_modules
+package-lock.json
+
+# Lint
+.eslintcache
 
 # OS
 .DS_Store
