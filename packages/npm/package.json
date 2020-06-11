@@ -1,6 +1,8 @@
 {
   "name": "proem-ui",
-  "version": "2.0.0",
+  "homepage": "http://www.proemui.com/",
+  "description": "A ReactJS framework for fast app development",
+  "version": "2.0.0-beta.1",
   "keywords": [
     "react"
   ],
