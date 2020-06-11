@@ -79,7 +79,7 @@ class MessageBox extends Component {
         } = this.props;
         const { title, type, details } = message;
 
-        let myIcon = icon;
+        let myIcon = null;
         let myClass = classes.root;
 
         switch (type) {
@@ -117,7 +117,9 @@ class MessageBox extends Component {
             <Collapse in={enabled}>
                 <Paper className={classnames([className, myClass])} elevation={3}>
                     <div className={classes.messageText}>
-                        {myIcon}
+                        {icon ? React.cloneElement(
+                            icon, { className: classes.icon },
+                        ) : myIcon}
                         {title}
                     </div>
                     {(details === undefined || details === '') ? '' : <div>{details}</div>}

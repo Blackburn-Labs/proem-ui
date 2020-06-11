@@ -2,7 +2,7 @@
   "name": "proem-ui",
   "homepage": "http://www.proemui.com/",
   "description": "A ReactJS framework for fast app development",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.1",
   "keywords": [
     "react"
   ],
@@ -26,6 +26,10 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/runtime": "^7.8.3",
     "@material-ui/core": "^4.9.14",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
