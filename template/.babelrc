@@ -12,6 +12,7 @@
   ],
   "plugins": [
     "@babel/plugin-transform-object-set-prototype-of-to-assign",
+    "@babel/plugin-proposal-throw-expressions",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-export-default-from"
   ]
