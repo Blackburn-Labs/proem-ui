@@ -17,3 +17,6 @@ SCRATCHPAD.md
 
 # OS
 .DS_Store
+
+# Production webpack
+/**/webpack.prod.js
