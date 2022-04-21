@@ -18,7 +18,6 @@ import InvalidState from './pages/InvalidState';
 document.ondragover = document.ondrop = (ev) => ev.preventDefault;
 document.body.ondrop = (ev) => ev.preventDefault;
 
-
 ReactDOM.render((
     <Provider store={store}>
         <MuiThemeProvider theme={theme}>

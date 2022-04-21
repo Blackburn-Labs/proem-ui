@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "main": "main.js",
   "scripts": {
-    "lint": "cross-env eslint . --ext .js --ext .jsx  --ignore-path .gitignore --cache",
+    "lint": "cross-env eslint . --ext .js --ext .jsx  --ignore-path .gitignore --cache --fix",
     "test": "karma start --single-run=true --watch=false karma.conf.js",
     "start": "webpack-dev-server --hot --config webpack.local.js"
   },
@@ -20,7 +20,6 @@
     "axios": "^0.26.1",
     "classnames": "^2.2.6",
     "copyfile": "^0.1.2",
-    "cross-env": "^7.0.2",
     "fs": "0.0.1-security",
     "moment": "^2.25.3",
     "notistack": "^0.9.14",
@@ -55,6 +54,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "braces": "^3.0.2",
+    "cross-env": "^7.0.3",
     "css-loader": "^3.5.3",
     "deep-equal": "^2.0.3",
     "eslint": "^7.0.0",
