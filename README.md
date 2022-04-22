@@ -41,18 +41,8 @@ $ npm run lint
 
 #### Running App
 Typically during development you will just want to run the app in a web browser for easier testing. 
-```shel
+```shell
 $ npm start
-```
-
-However, to open the app as a Windows/Mac app:
-```shell
-$ npm run start:client
-```
-
-When you are ready, package up the app as an executable using:
-```shell
-$ npm run build
 ```
 
 ### Directory Layout
