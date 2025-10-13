@@ -1,101 +1,341 @@
-Proem UI Framework
-===========
+# Proem UI Framework
 
-This is a ReactJS project boilerplate. This includes, by default:
+A modern React application boilerplate built with the latest technologies and best practices. This boilerplate is designed for rapid development of Progressive Web Applications (PWA) with Parse Server as the backend.
 
-* [Redux](http://redux.js.org/) - Maintains the state of the app.
-* [Babel](https://babeljs.io/) - Compiles the app.
-* [Webpack](https://webpack.github.io/) - Bundles the app. 
-* [Jasmine](https://jasmine.github.io/)/[Karma](https://karma-runner.github.io) - Tests the app. 
-* [Axios](https://github.com/mzabriskie/axios) - Makes promise base HTTP calls for the app. 
-* [Material-ui](http://www.material-ui.com/) - Makes the app pretty.
+## Technology Stack
 
-Developer Setup
----------------
-The UI uses React as the JS framework, and Electron to package it as a Windows/Mac client. This means the app can be ran via the web browser, or as a desktop client. Support for Cordova coming very soon as well, to allow packaging as a mobile app.   
+- **[React 19.1.1](https://react.dev/)** - Modern UI framework with latest features
+- **[Material-UI (MUI) v7](https://mui.com/)** - Comprehensive component library
+- **[React Router v7](https://reactrouter.com/)** - Client-side routing
+- **[Redux](https://redux.js.org/)** - Centralized state management
+- **[Vite](https://vite.dev/)** - Next-generation build tool and dev server
+- **[Vitest](https://vitest.dev/)** - Modern testing framework
+- **[Parse Platform](https://parseplatform.org/)** - Backend-as-a-Service (can be adapted to other backends)
 
-To get started, developers will need to install two things first:
- * [Git](https://git-scm.com/) - To pull the code down, though one could manually download it form GitHub too.
- * [Node](https://nodejs.org) - More specifically, the NPM (node package manager). Proem UI does not run on Node, but does use the NPM to make managing the 3rd party dependencies easier. 
+## Prerequisites
 
-### Clone and Run UI
-To install and run the app:
-```shell
-### 1. Clone this repository
-$ git clone https://github.com/rwblackburn/proem-ui.git your-project-name
+Before getting started, ensure you have the following installed:
+- **[Git](https://git-scm.com/)** - Version control system
+- **[Node.js](https://nodejs.org)** >= 22.13.0 - Runtime environment and NPM package manager
 
-### 2. Go into the app
-$ cd your-project-name
+## Quick Start
 
-### 3. Install dependencies
-$ npm install
+### 1. Clone and Install
 
-### 4. Start the webpack
-$ npm start
-``` 
+```bash
+# Clone this repository
+$ git clone https://github.com/Blackburn-Labs/proem-ui.git  your-project-name
 
-This will run webpack (generating the `renderer-bundle.js` file). Just leave that running in your terminal, and the app will rebundle with every change (allowing for a faster development cycle).  Before committing any changes to your project, you will probably want to run lint to check for code compliance:
-```shell
-$ npm run lint
+# Navigate into the directory
+cd your-project-name
+
+# Install dependencies
+npm install
+
+# Note: Playwright browsers (~200MB) will be downloaded automatically during installation
+# This only happens once and enables E2E testing out of the box
 ```
 
-#### Running App
-Typically during development you will just want to run the app in a web browser for easier testing. 
-```shell
-$ npm start
+### 2. Configure Environment
+
+Create a `.env` file in the root directory (see `.env.example` for template):
+```env
+API_URL=your_api_url
 ```
 
-### Directory Layout
+### 3. Start Development Server
 
-The web directory contains the web UI.
+```bash
+npm start
+```
 
-```shell
+Your application will be available at `http://localhost:5173`
+
+### 4. Disconnect from Boilerplate Repository
+
+After cloning, you'll want to disconnect from the original boilerplate repository and set up your own:
+
+```bash
+# Remove the original remote
+git remote remove origin
+
+# Initialize fresh git history (optional)
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit from Proem UI boilerplate"
+
+# Add your own repository
+git remote add origin your-repo-url
+git push -u origin master
+```
+
+**Alternative: Download ZIP**
+You can also simply download the boilerplate as a ZIP file from `https://github.com/Blackburn-Labs/proem-ui` using the "Download ZIP" button. This gives you a clean start without any git connection.
+
+## Development Commands
+
+```bash
+# Start development server
+npm start
+
+# Build for production
+npm build
+
+# Preview production build
+npm preview
+
+# Run unit tests
+npm test
+
+# Run tests in watch mode
+npm test:watch
+
+# Run tests with UI
+npm test:ui
+
+# Run tests with coverage
+npm test:coverage
+
+# Run E2E tests (browsers installed automatically via postinstall)
+npm run test:e2e
+
+# Run E2E tests in UI mode
+npm run test:e2e:ui
+
+# Lint and fix code
+npm run lint
+```
+
+## Project Structure
+
+```
 /
-├── /node_modules/              # 3rd party components (populated by npm install)
-├── /actions/                   # Redux action function library
-├── /components/                # Shared or generic UI components
-│   └── /...                    # Each component should get its own folder (that matches the name of the component)
-├── /pages/                     # React components for web pages
-│   ├── /about/                 # About page
-│   ├── /error/                 # Error page
-│   ├── /home/                  # Home page
-│   └── /...                    # etc.
-├── /test/                      # Unit and integration tests
-├── /utils/                     # Utility and helper classes
-│── main.js                     # React application entry point
-│── package.json                # The list of project dependencies and NPM scripts
-│── renderer.js                 # This root application script, will be bundled
-│── store.js                    # The root Redux data store
-└── webpack.*.js                # Bundling and optimization settings for Webpack
+├── /public/                # Static assets (icons, images, manifest)
+├── /src/
+│   ├── /components/        # Reusable app-wide UI components
+│   │   ├── /layout/        # Layout components (AppBar, Footer, etc.)
+│   │   └── /common/        # Common UI components (Button, Card, etc.)
+│   ├── /domain/            # Domain models extending BasicDomain/BasicArray
+│   │   └── README.md       # Domain architecture documentation
+│   ├── /features/          # Feature-specific components
+│   │   └── /profile/       # Example: Profile feature components
+│   │       ├── ProfileDetails.jsx
+│   │       ├── ProfileList.jsx
+│   │       └── ProfileCard.jsx
+│   ├── /router/            # Routing configuration
+│   ├── /screens/           # Full page components/views
+│   │   ├── HomeScreen.jsx
+│   │   └── AboutScreen.jsx
+│   ├── /store/             # Redux reducers, actions, and selectors
+│   │   └── README.md       # Redux patterns documentation
+│   ├── /theme/             # Global styles and theme configuration
+│   ├── /utils/             # Utility functions and helpers
+│   ├── App.jsx             # Root application component
+│   └── main.jsx            # Application entry point
+├── /tests/                 # Test files
+│   ├── /e2e/               # End-to-end tests
+│   ├── setup.js            # Test setup and configuration
+│   └── README.md           # Testing strategy guide
+├── .env.example            # Environment variables template
+├── package.json            # Project dependencies and scripts
+└── vite.config.js          # Vite configuration
 ```
-### Beginning Your App
-Once you have proem running, you are ready to spin it off to make you own app. A reminder of some of the first things you'll want to do are:
- 1. Do a project-wide search & replace on these to strings: `{{App Name}}` & `{{domain}}`
- 1. Change the `name` in `package.json` (it's right at the top)
- 1. Change the `/css/theme.js` to match you color palette/style.
- 1. Generate some app specific icons/favicon. We suggest using the [RealFaviconGenerator](https://realfavicongenerator.net/) for this.
- 1. Optionally, change the `OBJECT_KEY` and `TOKEN_KEY` in `utils/SessinUtils.js`.
- 1. Replace this `README.md` with one specific for your project.
 
-## Appendix
+### Directory Conventions
 
-### Tips/FAQ
-Q) _I need to pass environment specific values to the app, such as my API's URL or the oAuth information. Where do I do that?_
+#### `/src/screens/` - Page-Level Components
+Contains full-page views that represent the main states/routes of your application. Each screen typically corresponds to a route in your router configuration.
 
-A) **Check out the `webpack.\*.js files`. You can add environment specific settings there. For example, `webpack.local.js` contains the settings & environment variables for running the app locally.**
+**Example:** `HomeScreen.jsx`, `DashboardScreen.jsx`, `AboutScreen.jsx`
 
-Q) _Best way to catch/display error messages?_
+#### `/src/features/` - Feature-Specific Components
+Contains all UI components related to a specific feature or domain. Each feature gets its own subdirectory with all related components.
 
-A) **The /pages/App.js has a global error message display. We are using [axios](https://github.com/mzabriskie/axios) for dispatching API calls. Therefore the app can watch for any errors in the /reducer/appStateReducer.js for any of your actions (anything that ends in `_REJECTED`) to catch and display any message there. However, each page should also handle specific errors themselves, to gracefully alter the display.**
+**Example:**
+```
+/src/features/profile/
+├── ProfileDetails.jsx    # Detailed profile view
+├── ProfileList.jsx       # List of profiles
+├── ProfileCard.jsx       # Individual profile card
+└── ProfileForm.jsx       # Profile editing form
+```
 
+#### `/src/components/` - Reusable UI Components
+Contains generic, reusable components used across multiple features and screens. These should be highly composable and not tied to specific business logic.
 
-### Other Resources
-We pulled this boilerplate together from many sources over the years. One in particular is the [HTML5Boilerplate project](https://html5boilerplate.com/). This project no longer resembles that any longer, however we are big fans of that boilerplate and suggest anyone check it out. 
+**Example:** Navigation bars, buttons, modals, cards, forms, etc.
 
-If you are new to React, I would suggest watching through these 14 videos on React & Flux by [LearnCode.academy](https://twitter.com/learncodeacad):
-* [React JS Tutorial](https://youtu.be/MhkGQAoc7bc?list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b)
+## Architecture
 
-After, I would also suggest take a look at these 7 videos on Redux within React, also by [LearnCode.academy](https://twitter.com/learncodeacad):
-* [Redux Tutorial](https://youtu.be/1w-oQ-i1XB8?list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b)
+### Key Architectural Patterns
 
+1. **Domain Models** - All data models extend `BasicDomain` (Parse.Object) or `BasicArray`
+   - See [Domain Documentation](src/domain/README.md)
 
+2. **Redux Store** - Centralized state management with strict patterns
+   - See [Store Documentation](src/store/README.md)
+
+3. **Testing Strategy** - Focused on business logic, not implementation details
+   - See [Testing Documentation](tests/README.md)
+
+### Parse Platform Integration
+
+This boilerplate is designed to work with [Parse Server](https://parseplatform.org/), a powerful open-source backend. All Parse-specific code is marked with `[PARSE]` comments for easy identification and removal if you want to use a different backend.
+
+**Key Parse Integration Points:**
+- Domain models extend `Parse.Object` (see `src/domain/BasicDomain.js`)
+- Redux actions use `Parse.Query` for data fetching
+- Authentication via Parse User system
+
+To adapt this boilerplate for a different backend:
+1. Search for `[PARSE]` comments throughout the codebase
+2. Replace Parse.Query calls with your API client
+3. Update domain models to use your data layer
+4. Modify authentication flow in store/auth.js
+
+## Customizing Your Application
+
+After cloning this boilerplate, follow these steps to make it your own:
+
+### 1. Update Project Identity
+Do a project-wide search and replace:
+- `{{App Name}}` → Your application name
+- `{{domain}}` → Your domain/organization
+
+**Files to update:**
+- `package.json` - Update name and repository
+- `index.html` - Update title and meta tags
+- `public/manifest.json` - Update PWA manifest
+
+### 2. Configure Theme
+Customize your application's look and feel:
+- Edit `src/theme/theme.js` to match your brand colors and style
+
+### 3. Generate Icons and Favicon
+- Replace icons in `/public/` directory
+- Update `public/manifest.json` with new icon paths
+- We recommend using [RealFaviconGenerator](https://realfavicongenerator.net/) for comprehensive favicon generation
+
+### 4. Update Branding Assets
+- Replace `/public/logo-light.png` and `/public/logo-dark.png`
+- Update logo references in components (e.g., `src/components/layout/AppBar.jsx`)
+
+### 5. Update This README
+- Replace this boilerplate `./README.md` with documentation specific to your project
+- Include your project's purpose, features, and any custom setup instructions
+- Update the technology stack section if you've added or removed dependencies
+- Document any project-specific development workflows or conventions
+
+## Testing
+
+This boilerplate follows a pragmatic testing philosophy that prioritizes developer velocity and actual bug prevention. See [tests/README.md](tests/README.md) for detailed testing guidelines.
+
+**Testing Pyramid:**
+- ✅ **Unit Tests** - Test pure functions and utilities
+- ✅ **Integration Tests** - Test Redux reducers, selectors, and domain models
+- ✅ **E2E Tests** - Test critical user journeys (3-5 tests)
+- ❌ **UI Component Tests** - We don't write these (see testing guide for why)
+
+## PWA Support
+
+This application is configured as a Progressive Web App (PWA):
+- Install and run offline
+- App-like experience on mobile devices
+- Automatic updates
+- Fast loading with service workers
+
+To customize PWA settings:
+- Edit `public/manifest.json`
+- Update icons in `/public/`
+- Configure service worker in `vite.config.js`
+
+## Best Practices
+
+### Code Style
+- Use ESLint for code quality (run `npm run lint`)
+- Follow React 19 best practices
+- Use functional components with hooks
+- Implement proper error boundaries
+
+### State Management
+- Use Redux for global state
+- Use local state for UI-only state
+- Follow Redux patterns in [store/README.md](src/store/README.md)
+
+### Component Organization
+- Keep components small and focused
+- Use composition over inheritance
+- Separate business logic from presentation
+- Co-locate feature-specific components
+
+## Troubleshooting
+
+### Common Issues
+
+**Build Errors:**
+- Ensure Node.js version >= 22.18.0
+- Clear `node_modules` and reinstall: `rm -rf node_modules && npm install`
+- Clear Vite cache: `rm -rf node_modules/.vite`
+
+**Environment Variables Not Loading:**
+- Ensure `.env` file exists in project root
+- All Vite environment variables must start with `VITE_`
+- Restart dev server after changing `.env`
+
+**Tests Failing:**
+- Run `npm run lint` to check for code issues
+- Ensure all dependencies are installed
+- Check test setup in `tests/setup.js`
+
+**E2E Tests Not Working:**
+- Playwright browsers are installed automatically via `postinstall` script
+- If browsers are missing, run `npx playwright install` manually
+- Browsers are cached in `~/.cache/ms-playwright` (macOS/Linux) or `%USERPROFILE%\AppData\Local\ms-playwright` (Windows)
+
+## Security Notes
+
+This boilerplate currently uses Parse SDK `^6.2.0-alpha.3` instead of the latest stable version (6.1.1) to avoid [CVE-2025-57324](https://github.com/advisories/GHSA-9g8m-v378-pcg3), a prototype pollution vulnerability affecting all versions ≤ 6.1.1.
+
+The caret (`^`) version range ensures automatic upgrade to stable `6.2.0` when it's released by the Parse team.
+
+**Monitoring**: Check [Parse-SDK-JS releases](https://github.com/parse-community/Parse-SDK-JS/releases) for updates.
+
+## Resources
+
+### Learning Resources
+
+**React & Modern JavaScript:**
+- [React Documentation](https://react.dev/)
+- [JavaScript.info](https://javascript.info/)
+
+**Redux:**
+- [Redux Tutorial by LearnCode.academy](https://youtu.be/1w-oQ-i1XB8?list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b)
+
+**Material-UI:**
+- [MUI Documentation](https://mui.com/)
+- [MUI Component Examples](https://mui.com/material-ui/getting-started/)
+
+**Parse Platform:**
+- [Parse Platform Documentation](https://docs.parseplatform.org/)
+- [Parse JavaScript SDK Guide](https://docs.parseplatform.org/js/guide/)
+
+**Testing:**
+- [Vitest Documentation](https://vitest.dev/)
+- [Playwright E2E Testing](https://playwright.dev/)
+
+## Contributing
+
+When contributing to this project:
+1. Follow the testing guidelines in [tests/README.md](tests/README.md)
+2. Run `npm run lint` before committing
+3. Write tests for business logic, not UI components
+4. Keep commits focused and well-documented
+
+## License
+
+This project is open source and available under the MIT License.
+
+---
+
+**Ready to build something amazing?** Start by running `npm start` and begin customizing this boilerplate for your next project!
