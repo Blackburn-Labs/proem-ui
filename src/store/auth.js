@@ -1,5 +1,4 @@
 import { Parse } from '../utils/parseProvider';
-import { decodeGoogleIdToken } from '../utils/jwtDecode.js';
 
 // Action type constants
 const LOGIN = 'LOGIN_USER';
