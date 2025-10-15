@@ -30,6 +30,7 @@
     "@react-oauth/google": "^0.12.2",
     "@vitejs/plugin-react": "^5.0.2",
     "eslint": "^9.34.0",
+    "events": "^3.3.0",
     "parse": "^6.2.0-alpha.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

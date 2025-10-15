@@ -6,6 +6,11 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [react()],
+        resolve: {
+            alias: {
+                events: 'events'
+            }
+        },
         define: {
             'process.env.GOOGLE_CLIENT_ID': JSON.stringify(env.GOOGLE_CLIENT_ID),
             'process.env.API_URL': JSON.stringify(env.API_URL),
