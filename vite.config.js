@@ -12,8 +12,9 @@ export default defineConfig(({ mode }) => {
             }
         },
         define: {
-            'process.env.GOOGLE_CLIENT_ID': JSON.stringify(env.GOOGLE_CLIENT_ID),
-            'process.env.API_URL': JSON.stringify(env.API_URL),
+            'process.env.PARSE_APP_ID': JSON.stringify(env.PARSE_APP_ID),
+            'process.env.PARSE_JS_KEY': JSON.stringify(env.PARSE_JS_KEY),
+            'process.env.PARSE_SERVER_URL': JSON.stringify(env.PARSE_SERVER_URL),
             global: 'window'
         },
     };
