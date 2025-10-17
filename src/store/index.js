@@ -19,7 +19,7 @@ export const store = configureStore({
             // [PARSE] Disable serialization checks since we're storing Parse objects directly
             serializableCheck: false,
         })
-        .concat(promiseMiddleware)
-        .concat(sessionMiddleware), // [PARSE]
+            .concat(promiseMiddleware)
+            .concat(sessionMiddleware), // [PARSE]
     devTools: import.meta.env.DEV,
 });

@@ -232,26 +232,6 @@ export const actions = {
         };
     },
 
-    googleSignup: (credentials) => ({
-        type: LOGIN,
-        meta: { credentials },
-        payload: new Parse.User({ email: decodeGoogleIdToken(credentials.credential)?.email, username: decodeGoogleIdToken(credentials.credential)?.email }).linkWith('google', { authData: {
-            id: decodeGoogleIdToken(credentials.credential)?.id,
-            id_token: credentials.credential,
-            access_token: credentials.access_token || null,
-        } }),
-    }),
-
-    googleLogin: (credentials) => ({
-        type: LOGIN,
-        meta: { credentials },
-        payload: Parse.User.logInWith('google', { authData: {
-            id: decodeGoogleIdToken(credentials.credential)?.id,
-            id_token: credentials.credential,
-            access_token: credentials.access_token || null,
-        } }),
-    }),
-
     resetPassword: (resetData) => ({
         type: RESET_PASSWORD,
         meta: { email: resetData.email },

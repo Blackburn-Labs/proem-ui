@@ -1,6 +1,7 @@
 {
   "name": "{{App Name}}",
   "version": "3.0.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@{{domain}}:your-org/your-project.git"
@@ -31,6 +32,9 @@
     "@reduxjs/toolkit": "^2.9.0",
     "@vitejs/plugin-react": "^5.0.2",
     "eslint": "^9.34.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
     "events": "^3.3.0",
     "parse": "^6.2.0-alpha.3",
     "react": "^19.1.1",
