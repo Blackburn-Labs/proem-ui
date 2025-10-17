@@ -13,7 +13,7 @@ import {
     Drawer,
     Toolbar,
     useMediaQuery,
-    useTheme
+    useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -47,7 +47,7 @@ const AppBar = () => {
                     sx={{
                         px: { xs: 0, md: 2 },
                         justifyContent: 'space-between',
-                        minHeight: { xs: 64, sm: 70 }
+                        minHeight: { xs: 64, sm: 70 },
                     }}
                 >
                     <Box
@@ -57,7 +57,7 @@ const AppBar = () => {
                             display: 'flex',
                             alignItems: 'center',
                             textDecoration: 'none',
-                            py: 1
+                            py: 1,
                         }}
                     >
                         <img
@@ -81,7 +81,7 @@ const AppBar = () => {
                                         color: 'text.primary',
                                         textDecoration: 'none',
                                         '&:hover': {
-                                            color: 'primary.main'
+                                            color: 'primary.main',
                                         },
                                     }}
                                 >
@@ -127,7 +127,7 @@ const AppBar = () => {
                 sx={{
                     '& .MuiDrawer-paper': {
                         width: { xs: '100%', sm: 320 },
-                    }
+                    },
                 }}
             >
                 <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

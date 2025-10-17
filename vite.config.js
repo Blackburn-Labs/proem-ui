@@ -8,14 +8,14 @@ export default defineConfig(({ mode }) => {
         plugins: [react()],
         resolve: {
             alias: {
-                events: 'events'
-            }
+                events: 'events',
+            },
         },
         define: {
             'process.env.PARSE_APP_ID': JSON.stringify(env.PARSE_APP_ID),
             'process.env.PARSE_JS_KEY': JSON.stringify(env.PARSE_JS_KEY),
             'process.env.PARSE_SERVER_URL': JSON.stringify(env.PARSE_SERVER_URL),
-            global: 'window'
+            global: 'window',
         },
     };
 });
